@@ -22,12 +22,12 @@ const startServer = async () => {
     await connectDB()
 
     const server = app.listen(PORT, () => {
-      console.log(` Server running on port ${PORT}`)
+      console.log(`Server running on port ${PORT}`)
     })
 
     // Graceful shutdown
     process.on("SIGINT", () => {
-      console.log(" Shutting down server...")
+      console.log("Shutting down server...")
       server.close(() => {
         process.exit(0)
       })
@@ -39,4 +39,4 @@ const startServer = async () => {
   }
 }
 
-startServer()
+ startServer()

@@ -1,22 +1,20 @@
-import { MongoClient } from "mongodb"
+
+import mongoose from 'mongoose';
 
 let db
 
-const connectDB = async () => {
-  
+export const connectDB = async () => {
   try {
-    const client = new MongoClient(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: process.env.DB_NAME,
+    });
 
-    await client.connect()
-
-    db = client.db(process.env.DB_NAME)
-
-    console.log("✅ MongoDB Connected")
+    console.log("MongoDB Connected with Mongoose");
   } catch (error) {
-    console.error("❌ DB Error:", error.message)
-    process.exit(1)
+    console.error("DB Error:", error.message);
+    process.exit(1);
   }
-}
+};
 
 const getDB = () => {
   if (!db) {
@@ -25,4 +23,4 @@ const getDB = () => {
   return db
 }
 
-export { connectDB, getDB }
+export { getDB }
