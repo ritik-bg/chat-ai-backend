@@ -18,7 +18,7 @@ export const createUser = async (req, res) => {
       password: password,
     });
 
-    res.status(201).json({ message: 'User created!', user });
+    res.status(201).json({ message: 'User created!', user,status:200 });
   } catch (err) {
     console.log(err,"error");
     
@@ -43,7 +43,7 @@ export const signIn = async(req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1d' });
 
-    res.json({ token, user });
+    res.json({ token, user, status:200 });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
