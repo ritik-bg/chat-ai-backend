@@ -13,7 +13,7 @@ app.use(globalLimiter)
 
 app.post('/signup', createUser);
 app.post('/signin', signIn);
-app.use('/api',verifyToken ,router);
+app.use('/api' ,router);
 
 
 app.get("/", (req, res) => {
